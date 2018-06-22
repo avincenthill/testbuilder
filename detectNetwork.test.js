@@ -4,61 +4,49 @@ var assert = chai.assert;
 
 describe("Diner's Club", function() {
   it("has a prefix of 38 and a length of 14", function() {
-    if (detectNetwork("38345678901234") !== "Diner's Club") {
-      throw new Error("Test failed");
-    }
+    detectNetwork("38345678901234").should.equal("Diner's Club");
   });
 
   it("has a prefix of 39 and a length of 14", function() {
-    if (detectNetwork("39345678901234") !== "Diner's Club") {
-      throw new Error("Test failed");
-    }
+    detectNetwork("39345678901234").should.equal("Diner's Club");
   });
 });
 
 describe("American Express", function() {
-  var assert = function(isTrue) {
-    if (isTrue) {
-      return true;
-    } else {
-      throw new Error("Test failed");
-    }
-  };
-
   it("has a prefix of 34 and a length of 15", function() {
-    assert(detectNetwork("343456789012345") === "American Express");
+    detectNetwork("343456789012345").should.equal("American Express");
   });
 
   it("has a prefix of 37 and a length of 15", function() {
-    assert(detectNetwork("373456789012345") === "American Express");
+    detectNetwork("373456789012345").should.equal("American Express");
   });
 });
 
 describe("Visa", function() {
   it("has a prefix of 4 and a length of 13", function() {
-    assert(detectNetwork("4123456789012") === "Visa");
+    detectNetwork("4123456789012").should.equal("Visa");
   });
 
   it("has a prefix of 4 and a length of 16", function() {
-    assert(detectNetwork("4123456789012345") === "Visa");
+    detectNetwork("4123456789012345").should.equal("Visa");
   });
 
   it("has a prefix of 4 and a length of 19", function() {
-    assert(detectNetwork("4123456789012345678") === "Visa");
+    detectNetwork("4123456789012345678").should.equal("Visa");
   });
 });
 
 describe("MasterCard", function() {
   it("has a prefix of 51 and a length of 16", function() {
-    expect(detectNetwork("5112345678901234")).to.equal("MasterCard");
+    detectNetwork("5112345678901234").should.equal("MasterCard");
   });
 
   it("has a prefix of 52 and a length of 16", function() {
-    expect(detectNetwork("5212345678901234")).to.equal("MasterCard");
+    detectNetwork("5212345678901234").should.equal("MasterCard");
   });
 
   it("has a prefix of 53 and a length of 16", function() {
-    expect(detectNetwork("5312345678901234")).to.equal("MasterCard");
+    detectNetwork("5312345678901234").should.equal("MasterCard");
   });
 
   it("has a prefix of 54 and a length of 16", function() {
