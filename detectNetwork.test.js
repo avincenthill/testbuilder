@@ -148,37 +148,35 @@ describe("Switch", function() {
   for (var length = 16; length <= 19; length++) {
     if (length != 17) {
       (function(length) {
-        it("has a prefix of 5018 and a length of " + length, function() {
+        it("has a prefix of 4903 and a length of " + length, function() {
           detectNetwork("4903" + "9".repeat(length - 4)).should.equal("Switch");
         });
-        it("has a prefix of 5020 and a length of " + length, function() {
+        it("has a prefix of 4905 and a length of " + length, function() {
           detectNetwork("4905" + "9".repeat(length - 4)).should.equal("Switch");
         });
-        it("has a prefix of 5038 and a length of " + length, function() {
+        it("has a prefix of 4911 and a length of " + length, function() {
           detectNetwork("4911" + "9".repeat(length - 4)).should.equal("Switch");
         });
-        it("has a prefix of 6304 and a length of " + length, function() {
+        it("has a prefix of 4936 and a length of " + length, function() {
           detectNetwork("4936" + "9".repeat(length - 4)).should.equal("Switch");
         });
-        it("has a prefix of 6304 and a length of " + length, function() {
+        it("has a prefix of 564182 and a length of " + length, function() {
           detectNetwork("564182" + "9".repeat(length - 6)).should.equal(
             "Switch"
           );
         });
-        it("has a prefix of 6304 and a length of " + length, function() {
+        it("has a prefix of 633110 and a length of " + length, function() {
           detectNetwork("633110" + "9".repeat(length - 6)).should.equal(
             "Switch"
           );
         });
-        it("has a prefix of 6304 and a length of " + length, function() {
+        it("has a prefix of 6333 and a length of " + length, function() {
           detectNetwork("6333" + "9".repeat(length - 4)).should.equal("Switch");
         });
-        it("has a prefix of 6304 and a length of " + length, function() {
+        it("has a prefix of 6759 and a length of " + length, function() {
           detectNetwork("6759" + "9".repeat(length - 4)).should.equal("Switch");
         });
       })(length);
     }
   }
 });
-
-//Heads up! Switch and Visa seem to have some overlapping card numbers - in any apparent conflict, you should choose the network with the longer prefix.
