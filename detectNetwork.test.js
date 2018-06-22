@@ -106,5 +106,79 @@ describe("Maestro", function() {
   }
 });
 
-describe("should support China UnionPay");
-describe("should support Switch");
+//China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+describe("China UnionPay", function() {
+  for (var length = 16; length <= 19; length++) {
+    (function(length) {
+      for (var p = 622126; p <= 622925; p++) {
+        (function(p) {
+          it("has a prefix of " + p + " and a length of " + length, function() {
+            detectNetwork(p + "9".repeat(length - 6)).should.equal(
+              "China UnionPay"
+            );
+          });
+        })(p);
+      }
+
+      for (var p = 624; p <= 626; p++) {
+        (function(p) {
+          it("has a prefix of " + p + " and a length of " + length, function() {
+            detectNetwork(p + "9".repeat(length - 3)).should.equal(
+              "China UnionPay"
+            );
+          });
+        })(p);
+      }
+
+      for (var p = 6282; p <= 6288; p++) {
+        (function(p) {
+          it("has a prefix of " + p + " and a length of " + length, function() {
+            detectNetwork(p + "9".repeat(length - 4)).should.equal(
+              "China UnionPay"
+            );
+          });
+        })(p);
+      }
+    })(length);
+  }
+});
+
+//Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+describe("Switch", function() {
+  for (var length = 16; length <= 19; length++) {
+    if (length != 17) {
+      (function(length) {
+        it("has a prefix of 5018 and a length of " + length, function() {
+          detectNetwork("4903" + "9".repeat(length - 4)).should.equal("Switch");
+        });
+        it("has a prefix of 5020 and a length of " + length, function() {
+          detectNetwork("4905" + "9".repeat(length - 4)).should.equal("Switch");
+        });
+        it("has a prefix of 5038 and a length of " + length, function() {
+          detectNetwork("4911" + "9".repeat(length - 4)).should.equal("Switch");
+        });
+        it("has a prefix of 6304 and a length of " + length, function() {
+          detectNetwork("4936" + "9".repeat(length - 4)).should.equal("Switch");
+        });
+        it("has a prefix of 6304 and a length of " + length, function() {
+          detectNetwork("564182" + "9".repeat(length - 6)).should.equal(
+            "Switch"
+          );
+        });
+        it("has a prefix of 6304 and a length of " + length, function() {
+          detectNetwork("633110" + "9".repeat(length - 6)).should.equal(
+            "Switch"
+          );
+        });
+        it("has a prefix of 6304 and a length of " + length, function() {
+          detectNetwork("6333" + "9".repeat(length - 4)).should.equal("Switch");
+        });
+        it("has a prefix of 6304 and a length of " + length, function() {
+          detectNetwork("6759" + "9".repeat(length - 4)).should.equal("Switch");
+        });
+      })(length);
+    }
+  }
+});
+
+//Heads up! Switch and Visa seem to have some overlapping card numbers - in any apparent conflict, you should choose the network with the longer prefix.
